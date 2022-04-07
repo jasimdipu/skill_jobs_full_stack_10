@@ -1,15 +1,41 @@
-<!-- {% for category in categories %}
-    Category Name: {{category.name}}
-    Description {{category.description}}
-    <br>
-{% endfor %} -->
-
-<!-- {{category.name}}
-{{category.description}} -->
-
-<!--{% for p in products %}-->
-<!--    Product Name: {{p.name}}-->
-<!--    Price: {{p.price}}-->
-<!--    Slug: {{p.slug}}-->
-<!--    <br>-->
-<!--{% endfor %}-->
+{% extends "main.html" %}
+{%block title%} Ecommerce|Home{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="row">
+        <!--        <h2>Home Page</h2>-->
+        <h2>Category Name</h2>
+    </div>
+    <div class="row mt-5">
+        {%for c in categories %}
+        <div class="card m-3" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{c.name}}</h5>
+                <!--                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+                <p class="card-text">{{c.description}}</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+    <div class="row mt-5">
+        <!--        <h2>Home Page</h2>-->
+        <h2>Products Name</h2>
+    </div>
+    <div class="row mt-5">
+        {%for p in products%}
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{p.name}}</h5>
+                <p class="card-text">{{p.description}}</p>
+                <p><span>{{p.price}}</span></p>
+                <a href="#" class="btn btn-primary">Details</a>
+                <a href="#" class="btn btn-primary">Add to cart</a>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+{%endblock%}

@@ -1,6 +1,5 @@
-from pydoc import describe
-from unicodedata import name
 from django.db import models
+
 
 # Create your models here.
 
@@ -11,6 +10,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Product(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, null=True, blank=True)
@@ -18,4 +18,3 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.name
-

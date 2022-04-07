@@ -6,16 +6,32 @@ from .models import Category, Product
 # Create your views here.
 # select * from category, Category.objects.all()
 
+def index(request):
+    categories = Category.objects.all()
+    products = Product.objects.all()
+
+    context = {
+        'categories': categories,
+        'products': products,
+    }
+
+    return render(request, "index.html", context=context)
+
+
+def about(request):
+    return render(request, "about.html")
+
+
 # select all data
 # def categories(request):
 #     categories = Category.objects.all()
-
+#
 #     context = {
 #         'categories': categories,
 #     }
-
-#     print(categories)
-#     print(categories.query)
+#
+#     # print(categories)
+#     # print(categories.query)
 #     return render(request, 'index.html', context)
 
 # # where clause orm
@@ -27,24 +43,24 @@ from .models import Category, Product
 
 
 #     return render(request, 'index.html', {'category': category})
-
-def products(request):
-    product = Product.objects.filter(name__startswith="vegetable") | Product.objects.filter(slug__startswith='burger')
-    print(product.query)
-    return render(request, 'index.html', {'products': product})
-
-
-def product_union_with_category(request):
-    product = Product.objects.all().values_list("name").union(Category.objects.all().values_list("name"))
-    print(product)
-    print(product.query)
-    return render(request, 'index.html', {'products': product})
-
-
-def not_product(request):
-    p = Product.objects.exclude(price__gt = 54.00)
-    print(p)
-    print(p.query)
-    return render(request, 'index.html', {'p': p})
-
-# orm selec query, where clause filter values, and or not
+#
+# def products(request):
+#     product = Product.objects.filter(name__startswith="vegetable") | Product.objects.filter(slug__startswith='burger')
+#     print(product.query)
+#     return render(request, 'index.html', {'products': product})
+#
+#
+# def product_union_with_category(request):
+#     product = Product.objects.all().values_list("name").union(Category.objects.all().values_list("name"))
+#     print(product)
+#     print(product.query)
+#     return render(request, 'index.html', {'products': product})
+#
+#
+# def not_product(request):
+#     p = Product.objects.exclude(price__gt=54.00)
+#     print(p)
+#     print(p.query)
+#     return render(request, 'index.html', {'p': p})
+#
+# # orm selec query, where clause filter values, and or not
